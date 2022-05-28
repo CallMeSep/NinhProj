@@ -1,0 +1,33 @@
+<div class="menu-container"
+   xmlns:th="http://www.thymeleaf.org"
+   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" >
+   <a th:href="@{/}">Home</a>
+   |
+   <a th:href="@{/index}">
+   Room List
+   </a>
+   |
+   <!-- <a th:href="@{/shoppingCart}">
+   My Cart
+   </a> -->
+   |
+   <th:block sec:authorize="hasRole('ROLE_USER')">
+      <a th:href="@{/booking/history}">
+      History
+      </a>
+      |
+   </th:block>
+   <th:block sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_EMPLOYEE')">
+      <a th:href="@{/admin/revenue}">
+      Revenue
+      </a>
+      |
+   </th:block>
+   <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+      <a th:href="@{/admin/hotel}">
+      Hotel
+      </a>
+      |
+   </th:block>
+   
+</div>
