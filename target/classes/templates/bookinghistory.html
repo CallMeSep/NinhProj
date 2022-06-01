@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+   <head>
+      <meta charset="UTF-8">
+      <title>History List</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+      <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+        </style>
+   </head>
+   <body>
+      <th:block th:include="/_header"></th:block>
+      <th:block th:include="/_menu"></th:block>
+      
+      <div class="page-title">History List</div>
+      
+      
+        <table>
+            <thead>
+                <tr>
+                    <th>Hotel</th>
+                    <th>Room number</th>
+                    <th>Checked in date</th>
+                    <th>Checked out date</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${roombookings.empty}">
+                    <td colspan="2"> No Booking Available </td>
+                </tr>
+                <tr th:each="roombooking : ${roombookings}">
+                    <td><span th:text="${roombooking.room.hotel.name}">  </span></td>
+                    <td><span th:text="${roombooking.room.roomNum}">  </span></td>
+                    <td><span th:text="${roombooking.checkedInDate}">  </span></td>
+                    <td><span th:text="${roombooking.checkedOutDate}">  </span></td>
+                </tr>
+            </tbody>
+        </table>
+      
+      <br/>
+      <!-- <div class="page-navigator" th:if="${paginationProducts.totalPages > 1}">
+         <th:block th:each="page : ${paginationProducts.navigationPages}">
+        
+            <a th:href="@{|/productList?page=${page}|}" th:if="${page != -1}"
+               class="nav-item" th:utext="${page}"></a>
+              
+            <span class="nav-item" th:if="${page == -1}"> ... </span>
+            
+         </th:block>
+      </div> -->
+      
+      <th:block th:include="/_footer"></th:block>
+      
+   </body>
+</html>
